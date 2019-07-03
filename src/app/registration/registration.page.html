@@ -1,0 +1,72 @@
+<ion-content >
+  <ion-card>
+    <ion-card-header style="text-align: center; font-size: 18px; font-weight: bold">
+      Sign-up
+    </ion-card-header>
+    <ion-card-content>
+      <form class="form" [formGroup]="validations_form"  (ngSubmit)="registerUser(validations_form.value)">
+        <ion-grid>
+          <ion-row  justify-content-center>
+              
+              
+                <div >
+                    <ion-item >
+                        <ion-label position="floating" style="font-weight: bold;" color="primary"><ion-icon class="passwordIcon"ios="ios-person" md="md-person"></ion-icon>Email:</ion-label>
+                        <ion-input color="primary" formControlName="email" type="email" ngModel required></ion-input>
+                      </ion-item>
+                      <div style="text-align:center" class="validation-errors">
+                          <ng-container *ngFor="let validation of validation_messages.email">
+                            <div style="color: rgb(104, 58, 31);" class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                              {{ validation.message }}
+                            </div>
+                          </ng-container>
+                        </div>
+          
+                        <ion-item  >
+                          <ion-label position="floating"  style="font-weight: bold" color="primary"><ion-icon ios="ios-lock" md="md-lock"></ion-icon>Password:</ion-label>
+                          <ion-input  color="primary" formControlName="password" type="password" value="" class="form-controll" required></ion-input>
+                        </ion-item>
+          
+                    <div style="text-align:center"  class="validation-errors">
+                        <ng-container *ngFor="let validation of validation_messages.password">
+                          <div style="color: rgb(104, 58, 31);" class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+                            {{ validation.message }}
+                          </div>
+                        </ng-container>
+                      </div>
+                      <ion-item >
+                        <ion-label position="floating" style="font-weight: bold" color="primary"> <ion-icon ios="ios-lock" class="passwordIcon" md="md-lock"></ion-icon>Confirm Password:</ion-label>
+                        <ion-input
+                         color="primary" formControlName="confirm_password" type="password" value="" class="form-controll" required></ion-input>
+                      </ion-item>
+          
+                  <div style="text-align:center"  class="validation-errors">
+                      <ng-container *ngFor="let validation of validation_messages.confirm_password">
+                        <div style="color: rgb(104, 58, 31)" class="error-message" *ngIf="validations_form.get('confirm_password').hasError(validation.type) && (validations_form.get('confirm_password').dirty || validations_form.get('confirm_password').touched)">
+                          {{ validation.message }}
+          
+                        </div>
+                      </ng-container>
+<br/>
+                      <ion-button style="font-family: 'Roboto ', sans-serif; font-size: 15px" color="tertiary" class="submit-btn" type="submit" [disabled]="!validations_form.valid"  expand="block">Register</ion-button>
+    
+                      <label style="color: rgb(104, 58, 31)"  class="error-message">{{errorMessage}}</label>
+                     <div padding style="text-align:center">
+                      <label class="success-message">{{successMessage}}</label>
+                      
+                      <div style="color: rgb(78, 77, 76); text-align: center" >
+                      Already have an account? <a routerLink="/login">Sign in</a>
+                      </div>
+                      </div>
+                </div>
+              
+               </div>
+          </ion-row>
+        </ion-grid>
+      </form>
+
+
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

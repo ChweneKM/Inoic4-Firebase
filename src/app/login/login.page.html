@@ -1,0 +1,65 @@
+
+<ion-content class="background">
+    <ion-card>
+            <ion-card-header style="text-align: center; font-size: 18px; font-weight: bold">
+                    Log-in
+                  </ion-card-header>
+  
+      <ion-card-content>
+        <form class="form" [formGroup]="validations_form"  (ngSubmit)="login(validations_form.value)">
+            <ion-grid>
+              <ion-row justify-content-center>
+                    
+                <div class="innerLayer ">
+                  <ion-item >
+                    <ion-label style=" font-weight: bold;" color="primary" position="floating"><ion-icon ios="ios-person" md="md-person"></ion-icon>Email:</ion-label>
+                    <ion-input color="primary" formControlName="email" type= "email" ></ion-input>
+                  </ion-item>
+                  <div style="text-align:center"  class="validation-errors">
+                      <ng-container *ngFor="let validation of validation_messages.email">
+                        <div style="color: rgb(104, 58, 31)" class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                          {{ validation.message }}
+                        </div>
+                      </ng-container> 
+                    </div>
+                    <ion-item>
+                      <ion-label style=" font-weight: bold;" color="primary" position="floating"><ion-icon ios="ios-lock" md="md-lock"></ion-icon>Password:</ion-label>
+                      <ion-input color="primary" [type]="getType()" type= "password" formControlName="password" class="form-controll" required></ion-input>
+                      <ion-icon slot="end" color="primary" [name]="passwordIcon" class="passwordIcon" size="small" (click)="toggleTextPassword()"></ion-icon>
+                    
+                    </ion-item>
+              
+                <div style="text-align:center"  class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.password">
+                      <div style="color: rgb(104, 58, 31)" class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+                        {{ validation.message }}
+                      </div>
+                    </ng-container>
+                  </div> 
+                <br/><br/>
+                 
+                  
+                  <ion-button size="small" color="tertiary"class="submit-btn filler" type="submit" expand="block"  [disabled]="!validations_form.valid" style="font-size: 15px">Login</ion-button>
+                    
+                    <label style="color: rgb(104, 58, 31)"  class="error-message">{{errorMessage}}</label>
+                    <div style="text-align:center"  class="text-style" class="text-color">
+                        <div style="color: rgb(78, 77, 76)"> Forgot  <a class="text-colorlink" (click)="recover()"> password?</a></div>
+                        </div>
+                        <br/>
+                        <br/>
+                       
+              <div text-center class="text-style" class="text-color">
+                        <p style="color: rgb(78, 77, 76)">Don't have an account, <a class="text-colorlink" routerLink='/registration' >
+                         register!</a>
+                        </p>
+                         </div> 
+                        </div>
+            
+            </ion-row>
+            </ion-grid>
+            </form>
+      </ion-card-content>
+    </ion-card>
+    
+  
+  </ion-content>
